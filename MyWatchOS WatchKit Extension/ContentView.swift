@@ -12,6 +12,21 @@ struct ContentView: View {
         VStack(alignment: .center, spacing: 8){
             Text("Our Counter will be here")
                 .padding()
+            
+            HStack(alignment: .center, spacing: 8){
+                Button {
+                  print("Increment")
+                } label: {
+                 Image(systemName: "plus")
+                    .font(.system(size: 34))
+                }
+                Button {
+                  print("Decrement")
+                } label: {
+                  Text("Go!")
+                    .font(.system(size: 34))
+                }
+              }
         }
     }
 }
