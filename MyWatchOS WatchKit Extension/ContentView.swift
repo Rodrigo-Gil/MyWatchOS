@@ -9,8 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, World!")
-            .padding()
+        VStack(alignment: .center, spacing: 8){
+            Text("Our Counter will be here")
+                .padding()
+        }
     }
 }
 
