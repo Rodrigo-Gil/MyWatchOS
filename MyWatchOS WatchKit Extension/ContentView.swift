@@ -8,20 +8,26 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var count = 0
+    
     var body: some View {
         VStack(alignment: .center, spacing: 8){
-            Text("Our Counter will be here")
-                .padding()
-            
+            Text("\(count)")
+                .font(.system(size: 90))
+                .fontWeight(.black)
+                .multilineTextAlignment(.center)
             HStack(alignment: .center, spacing: 8){
                 Button {
                   print("Increment")
+                    count = count + 1
                 } label: {
                  Image(systemName: "plus")
                     .font(.system(size: 34))
                 }
                 Button {
                   print("Decrement")
+                    count = count - 1
                 } label: {
                   Text("Go!")
                     .font(.system(size: 34))
