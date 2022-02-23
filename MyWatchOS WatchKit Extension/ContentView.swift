@@ -26,8 +26,10 @@ struct ContentView: View {
                     .font(.system(size: 34))
                 }
                 Button {
+                    if (count > 0) {
+                        count = count - 1
+                    }
                   print("Decrement")
-                    count = count - 1
                 } label: {
                   Text("Go!")
                     .font(.system(size: 34))
