@@ -18,8 +18,8 @@ struct ContentView: View {
                 .font(.system(size: 90))
                 .fontWeight(.black)
                 .multilineTextAlignment(.center)
-                .onReceive(timer) {
-                    time in print("\(time)")
+                .onReceive(timer) { _ in
+                    count = count > 0 ? count - 1: 0
                 }
             HStack(alignment: .center, spacing: 8){
                 Button {
