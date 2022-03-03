@@ -10,7 +10,8 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var count = 0
-    private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State private var isRunning = false
+    @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         VStack(alignment: .center, spacing: 8){
@@ -19,26 +20,28 @@ struct ContentView: View {
                 .fontWeight(.black)
                 .multilineTextAlignment(.center)
                 .onReceive(timer) { _ in
-                    count = count > 0 ? count - 1: 0
-                }
+                      if count == 0 {
+                        timer.upstream.connect().cancel()
+                      }
+                      count = count > 0 ? count - 1 : 0
+                    }
             HStack(alignment: .center, spacing: 8){
                 Button {
-                  print("Increment")
+                    print("Increment")
+                    timer.upstream.connect().cancel()
                     count = count + 1
                 } label: {
-                 Image(systemName: "plus")
-                    .font(.system(size: 34))
+                Image(systemName: "plus")
+                        .font(.system(size: 34))
                 }
                 Button {
-                    if (count > 0) {
-                        count = count - 1
-                    }
-                  print("Decrement")
+                    print("Go")
+                    timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
                 } label: {
-                  Text("Go!")
-                    .font(.system(size: 34))
+                    Text("Go!")
+                        .font(.system(size: 34))
                 }
-              }
+            }
         }
     }
 }
